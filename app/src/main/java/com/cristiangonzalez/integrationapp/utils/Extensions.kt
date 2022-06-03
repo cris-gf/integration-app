@@ -5,24 +5,23 @@ import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import java.util.regex.Pattern
 
+//Generar toast en activity
 fun Activity.toast(message: CharSequence, duration: Int = Toast.LENGTH_SHORT) = Toast.makeText(this, message, duration).show()
 
 fun Activity.toast(resourceId: Int, duration: Int = Toast.LENGTH_SHORT) = Toast.makeText(this, resourceId, duration).show()
 
-fun ViewGroup.inflate(layoutId: Int) = LayoutInflater.from(context).inflate(layoutId, this, false)!!
-
+//Ir a Activity
 inline fun <reified T : Activity> Activity.goToActivity(noinline init: Intent.() -> Unit = {}) {
     val intent = Intent(this, T::class.java)
     intent.init()
     startActivity(intent)
 }
 
+//Validar textInput al cambiar texto
 fun TextInputEditText.validate(validation: (String) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(editable: Editable) {
@@ -36,16 +35,19 @@ fun TextInputEditText.validate(validation: (String) -> Unit) {
     })
 }
 
-fun Activity.isValidEmail(email: String): Boolean {
+//Validar email con pattern
+fun isValidEmail(email: String): Boolean {
     val pattern = Patterns.EMAIL_ADDRESS
 
-    return pattern.matcher(email).matches() //&& email.endsWith(getString(R.string.login_email_domain))
+    return pattern.matcher(email).matches()
 }
 
+//Validar contraseña con regex
 fun isValidPassword(password: String): Boolean {
     val passwordPattern = "^.{8,}\$"
     val pattern = Pattern.compile(passwordPattern)
     return pattern.matcher(password).matches()
 }
 
+//Validar coincidencia de contraseñas
 fun isValidConfirmPassword(password: String, confirmPassword: String) = (password == confirmPassword)

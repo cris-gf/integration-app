@@ -24,4 +24,5 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideUserDao(db:UserDatabase) = db.userDao()
+
 }

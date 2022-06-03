@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.room.Room
 import com.cristiangonzalez.integrationapp.R
-import com.cristiangonzalez.integrationapp.database.UserDatabase
 import com.cristiangonzalez.integrationapp.database.entities.UserEntity
 import com.cristiangonzalez.integrationapp.databinding.ActivitySignUpBinding
 import com.cristiangonzalez.integrationapp.ui.UserViewModel
@@ -26,14 +24,14 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        //Mostrar progressBar al frente
         binding.signUpProgressBar.progressBar.bringToFront()
 
         binding.buttonSignUp.setOnClickListener {
             val email = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
             val confirmPassword = binding.editTextConfirmPassword.text.toString()
-
+            //Validar credenciales ingresadas
             if (isValidEmail(email) && isValidPassword(password) && isValidConfirmPassword(password, confirmPassword)) {
                 signUp(email, password)
                 goToActivity<LoginActivity> {
@@ -44,7 +42,7 @@ class SignUpActivity : AppCompatActivity() {
                 toast(R.string.login_incorrect_data)
             }
         }
-
+        //Regresar a LoginActivity
         binding.buttonGoLogIn.setOnClickListener {
             goToActivity<LoginActivity> {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -67,20 +65,23 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun signUp(email: String, password: String) {
         showProgressBar()
+        //Acceso a db asincrona
         CoroutineScope(Dispatchers.Main).launch {
             try {
+                //Registrar usuario
                 val user = UserEntity(email = email, password = password)
                 userViewModel.insertUser(user)
-                showMessage("Registro Exitoso, por favor inicie sesión")
+                showMessage(R.string.login_success_signup)
                 hideProgressBar()
-            } catch (e: SQLiteException) {
-                showMessage("El correo ya está registrado")
+            } catch (e: SQLiteException) { //Excepcion campo email unique
+                showMessage(R.string.login_email_unique)
                 hideProgressBar()
             }
         }
     }
 
-    private fun showMessage(text: String) {
+    //Mostrar toast y enviar a LoginActivity
+    private fun showMessage(text: Int) {
         toast(text)
         goToActivity<LoginActivity> {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -95,4 +96,5 @@ class SignUpActivity : AppCompatActivity() {
     private fun hideProgressBar() {
         binding.signUpProgressBar.progressBar.visibility = View.GONE
     }
+
 }

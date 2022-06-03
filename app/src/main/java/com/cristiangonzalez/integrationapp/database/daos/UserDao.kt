@@ -8,9 +8,11 @@ import com.cristiangonzalez.integrationapp.database.entities.UserEntity
 
 @Dao
 interface UserDao {
+    //Consulta email(usuario) existe
     @Query("SELECT * FROM user_table WHERE email = :email")
     suspend fun findUser(email: String): UserEntity?
 
+    //Insertar usuario
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(users: UserEntity)
 }

@@ -13,16 +13,19 @@
     <string name="login_go_login">Cancelar</string>
     <string name="login_incorrect_data">Por favor verifique que los datos son correctos.</string>
     <string name="login_invalid_email">Email no es válido</string>
-    <string name="login_invalid_password">The password should contain 8 characters at least</string>
-    <string name="login_invalid_confirm_password">Confirm Password does not match with Password</string>
-    <string name="login_failed_authentication">Authentication Failed.</string>
-    <string name="login_failed_google_sign_in">Google sign in failed.</string>
-    <string name="login_unexpected_error">An unexpected error occurred, please try again.</string>
-    <string name="login_confirm_email">User must confirm email first.</string>
-    <string name="login_sent_confirm_email">An email has been sent to you. Please confirm before sign in.</string>
-    <string name="login_sent_reset_password">An email has been sent to reset your password.</string>
+    <string name="login_invalid_password">La contraseña debe contenter al menos 8 caracteres</string>
+    <string name="login_invalid_confirm_password">Las contraseñas no coinciden</string>
+    <string name="login_success">Sesión iniciada correctamente</string>
+    <string name="login_incorrect_password">La contraseña es incorrecta</string>
+    <string name="login_incorrect_user">El usuario no está registrado.</string>
+    <string name="login_success_signup">Registro exitoso, por favor inicie sesión</string>
+    <string name="login_email_unique">El correo ya está registrado</string>
     <string name="login_logo_content_description">App Logo</string>
+    <!-- ToolBar -->
     <string name="search">Buscar</string>
+    <!-- Errors -->
+    <string name="error_internet">No cuenta con conexión a internet</string>
+    <string name="error_unexpected">Ocurrió un error inesperado.</string>
     <!-- Logout Dialog -->
     <string name="logout_dialog_title">¿Cerrar Sesión?</string>
     <string name="logout_dialog_message">La sesión actual será cerrada y se redigirá la pantalla de inicio de sesión.</string>

@@ -7,8 +7,9 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "user_table",
-    indices = [Index(value = ["email"], unique = true)]
+    indices = [Index(value = ["email"], unique = true)] //Email unico
 )
+//Campos de tabla
 data class UserEntity (
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,

@@ -3,14 +3,11 @@ package com.cristiangonzalez.integrationapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cristiangonzalez.integrationapp.R
 import com.cristiangonzalez.integrationapp.databinding.DonutItemBinding
-import com.cristiangonzalez.integrationapp.models.Batter
 import com.cristiangonzalez.integrationapp.models.Donut
-
 
 class DonutAdapter(private val donuts: List<Donut>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -18,27 +15,29 @@ class DonutAdapter(private val donuts: List<Donut>):RecyclerView.Adapter<Recycle
 
         private val binding = DonutItemBinding.bind(itemView)
 
-        //Texto a mostrar
+        //Cargar atributos de api
         fun bind(donut: Donut) = with(itemView){
             val lvTopping = binding.llTopping
             val lvBatter = binding.llBatter
-
+            //Limpiar tv toppings
             lvTopping.removeAllViews()
+            //Agregar tv toppings
             donut.topping.forEach {
                 val rowTextView = TextView(context)
                 val type = "- " + it.type
                 rowTextView.text = type
                 lvTopping.addView(rowTextView)
             }
-
+            //limpiar tv batters
             lvBatter.removeAllViews()
+            //Agregar tv batters
             donut.batters.batter.forEach {
                 val rowTextView = TextView(context)
                 val type = "- " + it.type
                 rowTextView.text = type
                 lvBatter.addView(rowTextView)
             }
-
+            //Cargar datos en tv
             val price = "Q." + donut.ppu
             val name = donut.id.trimStart('0') + ". " + donut.name
             val type = "Type: " + donut.type.replaceFirstChar { it.uppercase() }
@@ -58,6 +57,5 @@ class DonutAdapter(private val donuts: List<Donut>):RecyclerView.Adapter<Recycle
     }
 
     override fun getItemCount() = donuts.size
-
 
 }

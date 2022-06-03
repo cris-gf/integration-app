@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,25 +43,27 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         binding.mainToolbar.inflateMenu(R.menu.menu_activity_main)
-        //menuInflater.inflate(R.menu.menu_activity_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        //Agregar acciones al pulsar item de menu
         when (item.itemId) {
             R.id.search -> {
+                //Filtrar lista al ingresar cadena
                 val searchView = item.actionView as SearchView
                 searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
                     override fun onQueryTextSubmit(query: String?) = false
 
                     override fun onQueryTextChange(newText: String?): Boolean {
-                        donutsFilter.clear()
+                        donutsFilter.clear() //Limpiar lista
                         if (newText.isNullOrEmpty()) {
-                            donutsFilter.addAll(donuts)
+                            donutsFilter.addAll(donuts) //Agregar todos
                             adapter.notifyDataSetChanged()
                         } else {
                             val search = newText.lowercase(Locale.ROOT)
                             donuts.forEach {
+                                //Agregar coincidencias
                                 if (it.name.lowercase(Locale.ROOT).contains(search)) donutsFilter.add(it)
                             }
                             adapter.notifyDataSetChanged()
@@ -79,11 +80,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecycleView() {
-        adapter = DonutAdapter(donutsFilter)
+        adapter = DonutAdapter(donutsFilter) //Enviar lista filtrada
         binding.rvDonut.layoutManager = LinearLayoutManager(this)
         binding.rvDonut.adapter = adapter
     }
 
+    //Mostrar material dialog
     private fun showDialog() {
         MaterialAlertDialogBuilder(this)
             .setTitle(resources.getString(R.string.logout_dialog_title))
@@ -105,36 +107,38 @@ class MainActivity : AppCompatActivity() {
             .build()
     }
 
-    //Asynchronous
     private fun donuts() {
+        //Consumir api asincrona
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val call = getRetrofit().create(DonutsAPI::class.java).getDonuts("0e91b8f1-5790-423a-868a-b249224ce1bb")
                 val donutsResponse = call.body()
                 runOnUiThread {
                     if (call.isSuccessful) {
+                        //Limpiar lista
                         donuts.clear()
                         if (donutsResponse != null) {
+                            //Agregar elementos de response a lista
                             donuts.addAll(donutsResponse)
                             donutsFilter.addAll(donuts)
                             adapter.notifyItemInserted(donutsResponse.size - 1)
                         }
                         hideProgressBar()
                     } else {
-                        showError()
+                        showError(R.string.error_unexpected)
                         hideProgressBar()
                     }
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    showError()
+                    showError(R.string.error_internet)
                 }
             }
         }
     }
 
-    private fun showError() {
-        toast("No cuenta con conexión a internet")
+    private fun showError(text: Int) {
+        toast(text)
         goToActivity<LoginActivity> {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
@@ -148,4 +152,5 @@ class MainActivity : AppCompatActivity() {
     private fun hideProgressBar() {
         binding.loginProgressBar.progressBar.visibility = View.GONE
     }
+
 }
