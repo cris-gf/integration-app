@@ -8,7 +8,8 @@
     <color name="secondaryLightColor">#ffff72</color>
     <color name="secondaryDarkColor">#c8b900</color>
     <color name="surfaceColor">#4797AB</color>
-    <color name="backgroundColor">#FFFFFF</color>
+    <color name="backgroundColor">#EEEEEE</color>
+    <color name="backgroundColorDark">#181822</color>
     <color name="errorColor">#CF6679</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="primaryTextColorDark">#4DD0E1</color>
@@ -16,7 +17,6 @@
     <color name="secondaryTextColorDark">#37474f</color>
     <color name="onSurfaceColor">#12000000</color>
     <color name="onBackgroundColor">#DD4B39</color>
-    <color name="dialogBackgroundColor">#eeeeee</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -26,4 +26,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="backgroundRVColor">#FAF2F1</color>
     <color name="backgroundCardColor">#F4DDDC</color>
+    <color name="backgroundCardColorDark">#2c2d32</color>
 </resources>

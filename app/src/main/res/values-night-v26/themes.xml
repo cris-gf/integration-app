@@ -16,6 +16,7 @@
         <item name="android:colorBackground">@color/backgroundColorDark</item>
         <!-- Text Input -->
         <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
+        <item name="android:autofilledHighlight">@color/primaryLightColorTransparent</item>
         <item name="colorControlNormal">@color/primaryTextColorDark</item>
         <!-- Toolbar -->
         <item name="android:windowNoTitle">true</item>

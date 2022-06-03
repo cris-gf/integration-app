@@ -1,4 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.IntegrationApp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Colors -->
@@ -9,8 +10,9 @@
         <item name="colorError">@color/errorColor</item>
         <item name="colorOnPrimary">@color/primaryTextColor</item>
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <item name="colorSecondaryContainer">@color/backgroundColor</item>
         <item name="android:statusBarColor">@color/primaryDarkColor</item>
-        <item name="android:colorBackground">@color/backgroundColor</item>
+        <item name="android:colorBackground">@color/backgroundRVColor</item>
         <!-- Text Input -->
         <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
         <item name="colorControlNormal">@color/primaryTextColorDark</item>
@@ -21,12 +23,19 @@
     <style name="NoPreview" parent="Theme.IntegrationApp">
         <item name="android:windowDisablePreview">true</item>
     </style>
+    <!-- RV Theme -->
+    <style name="RecyclerView" parent="Theme.IntegrationApp">
+        <item name="android:background">@color/backgroundRVColor</item>
+    </style>
+    <!-- Card Theme -->
+    <style name="CardView" parent="Theme.IntegrationApp">
+        <item name="cardBackgroundColor">@color/backgroundCardColor</item>
+    </style>
+    <!-- Toolbar Theme -->
+    <style name="Toolbar" parent="Theme.IntegrationApp">
+        <item name="android:background">@color/primaryDarkColor</item>
+    </style>
     <!-- Text Input Theme -->
     <style name="Widget.App.TextInputLayout" parent="Widget.Design.TextInputLayout"/>
-    <!-- Credits Dialog Theme -->
-    <style name="Theme.App.Dialog.FullScreen" parent="Theme.MaterialComponents.Dialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowBackground">@color/primaryLightColorTransparent</item>
-    </style>
 
 </resources>
