@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Donas</string>
+    <!-- Progress Bar -->
+    <string name="progress_bar">Cargando</string>
+    <!-- Login View -->
+    <string name="login_email">Email</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_confirm_password">Confirmar Contraseña</string>
+    <string name="login_sign_in">Iniciar Sesión</string>
+    <string name="login_logout">Cerrar Sesión</string>
+    <string name="login_sign_up">Registrarse</string>
+    <string name="login_create_account">Crear una Nueva Cuenta</string>
+    <string name="login_go_login">Cancelar</string>
+    <string name="login_incorrect_data">Por favor verifique que los datos son correctos.</string>
+    <string name="login_invalid_email">Email no es válido</string>
+    <string name="login_invalid_password">The password should contain 8 characters at least</string>
+    <string name="login_invalid_confirm_password">Confirm Password does not match with Password</string>
+    <string name="login_failed_authentication">Authentication Failed.</string>
+    <string name="login_failed_google_sign_in">Google sign in failed.</string>
+    <string name="login_unexpected_error">An unexpected error occurred, please try again.</string>
+    <string name="login_confirm_email">User must confirm email first.</string>
+    <string name="login_sent_confirm_email">An email has been sent to you. Please confirm before sign in.</string>
+    <string name="login_sent_reset_password">An email has been sent to reset your password.</string>
+    <string name="login_logo_content_description">App Logo</string>
+    <string name="search">Buscar</string>
+    <!-- Logout Dialog -->
+    <string name="logout_dialog_title">¿Cerrar Sesión?</string>
+    <string name="logout_dialog_message">La sesión actual será cerrada y se redigirá la pantalla de inicio de sesión.</string>
+    <string name="logout_dialog_positive">Cerrar Sesión</string>
+    <string name="logout_dialog_negative">Cancelar</string>
+    <!-- Card -->
+    <string name="card_topping">Topping</string>
+    <string name="card_batters">Batters</string>
+</resources>
